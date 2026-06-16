@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { authService } from "@/services/auth.service";
-import { Loader2, Activity, Ticket, Users, FileText } from "lucide-react";
+import { Loader2, Activity, Ticket, Users, FileText, LogOut } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 import clsx from "clsx";
@@ -38,6 +38,11 @@ export default function ConsoleLayout({
 
     verifySession();
   }, [router, pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/");
+  };
 
   if (!isVerified) {
     return (
@@ -88,6 +93,18 @@ export default function ConsoleLayout({
             );
           })}
         </div>
+      </div>
+
+      {/* Global Floating Logout Button */}
+      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50">
+        <button 
+          onClick={handleLogout}
+          className="flex items-center justify-center p-3 sm:px-4 sm:py-2.5 bg-white text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-full sm:rounded-[1.5rem] transition-all shadow-xl shadow-rose-500/10 hover:shadow-rose-500/20"
+          title="Logout"
+        >
+          <LogOut className="w-5 h-5 sm:w-5 sm:h-5" />
+          <span className="hidden sm:inline sm:ml-2 font-medium text-sm">Logout</span>
+        </button>
       </div>
     </div>
   );

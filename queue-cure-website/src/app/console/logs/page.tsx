@@ -1,15 +1,9 @@
 "use client";
 
-import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function LogsPage() {
   const router = useRouter();
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    router.push("/");
-  };
 
   return (
     <div className="p-4 sm:p-6 w-full">
@@ -18,13 +12,6 @@ export default function LogsPage() {
           <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">System Logs</h1>
           <p className="text-slate-500 text-sm sm:text-base mt-1">View clinic events and history.</p>
         </div>
-        <button 
-          onClick={handleLogout}
-          className="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-white text-rose-600 hover:bg-rose-50 border border-slate-200 rounded-xl transition-colors font-medium shadow-sm text-sm sm:text-base"
-        >
-          <LogOut className="w-4 h-4" />
-          <span className="hidden sm:inline">Logout</span>
-        </button>
       </div>
 
       <div className="bg-white rounded-2xl sm:rounded-3xl shadow-sm border border-slate-100 p-4 sm:p-6 h-[60vh] flex items-center justify-center border-dashed">

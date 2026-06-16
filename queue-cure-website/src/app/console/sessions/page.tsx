@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOut, Play, Loader2 } from "lucide-react";
+import { Play, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { sessionService } from "@/services/session.service";
@@ -27,11 +27,6 @@ export default function SessionsPage() {
     };
     checkSession();
   }, [router]);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    router.push("/");
-  };
 
   const handleStartSession = async () => {
     setIsStarting(true);
@@ -81,16 +76,6 @@ export default function SessionsPage() {
         </p>
       </div>
 
-      {/* Logout button moved to bottom right */}
-      <div className="absolute bottom-6 right-6 z-40">
-        <button 
-          onClick={handleLogout}
-          className="flex items-center space-x-2 px-4 py-2 bg-white text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-xl transition-colors font-medium shadow-sm text-sm sm:text-base"
-        >
-          <LogOut className="w-4 h-4" />
-          <span>Logout</span>
-        </button>
-      </div>
     </div>
   );
 }
